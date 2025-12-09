@@ -29,3 +29,45 @@ class RegisterView(APIView):
                 "status": "error",
                 "message": str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated] # checks if the user is authenticated
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+    
+    def patch(self, request):
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+# class ProfileView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get(self, request):
+#         user = request.user
+#         serializer = UserSerializer(user)
+#         return Response({
+#             "message": "User profile fetched successfully",
+#             "data": serializer.data
+#         }, status=status.HTTP_200_OK)
+
+#     def patch(self, request):
+#         user = request.user
+#         serializer = UserSerializer(user, data=request.data, partial=True)
+
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({
+#                 "message": "Profile updated successfully!",
+#                 "data": serializer.data
+#             }, status=status.HTTP_200_OK)
+
+#         return Response({
+#             "status": "error",
+#             "errors": serializer.errors
+#         }, status=status.HTTP_400_BAD_REQUEST)
+
