@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'users',
     'rest_framework',
     'api',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'products',
 
 ]
 
@@ -144,3 +145,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7)
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
