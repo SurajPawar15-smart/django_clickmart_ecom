@@ -5,6 +5,7 @@ from products import views as ProductViews
 from carts import views as CartViews
 from orders import views as OrderViews
 
+
 urlpatterns = [
     path('register/', UserViews.RegisterView.as_view()),
 
@@ -23,7 +24,7 @@ urlpatterns = [
     # Cart API
     path('cart/', CartViews.CartView.as_view()),
 
-     # Add to Cart
+    # Add to Cart
     path('cart/add/', CartViews.AddToCartView.as_view()),
 
     # Manage Cart
@@ -33,4 +34,6 @@ urlpatterns = [
     path('orders/place/', OrderViews.PlaceOrderView.as_view()),
 
     path('orders/', OrderViews.MyOrdersView.as_view()),
+
+    path('orders/<int:pk>/', OrderViews.OrderDetailView.as_view()),
 ]
