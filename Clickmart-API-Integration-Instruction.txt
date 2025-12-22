@@ -1,0 +1,132 @@
+VITE_SERVER_BASE_URL=http://127.0.0.1:8000/api/v1
+→ Base API URL for frontend
+
+Authentication
+/register/ → Register.jsx → line 69 → Register a new user
+/token/ → Login.jsx → line 35 → User login (get access token)
+/token/refresh/ → useAxios.js → line 83 → Refresh expired access token
+ 
+Profile
+/profile/ → Navbar.jsx → line 23 → Get username for navbar
+/profile/ → Checkout.jsx → line 31 → Get profile data and fill checkout form
+/profile/ → DashboardHome.jsx → line 20 → Show username and email in dashboard
+ 
+Products
+/products/ → Products.jsx → line 14 → Get products for homepage
+/products/${id}/ → ProductDetails.jsx → line 28 → Get single product details
+ 
+Cart
+/cart/ → Home.jsx → line 15 → Get cart items count for navbar
+/cart/ → Cart.jsx → line 15 → Get full cart data
+/cart/add/ → ProductDetails.jsx → line 86 → Add product to cart
+/cart/items/${itemId}/ → ProductDetails.jsx → line 76 → Update product quantity
+/cart/items/${itemId}/ → Cart.jsx → line 40 → Update cart item quantity
+/cart/items/${itemId}/ → Cart.jsx → line 51 → Remove product from cart
+ 
+Orders
+/orders/place/ → Checkout.jsx → line 85 → Place a new order
+/orders/ → DashboardHome.jsx → line 21 → Get last 4 orders
+/orders/ → Orders.jsx → line 24 → Get all orders list
+/orders/${orderId} → line 19 → Show order details
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

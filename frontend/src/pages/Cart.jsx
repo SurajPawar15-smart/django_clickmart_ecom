@@ -19,7 +19,7 @@ const Cart = () => {
         payload: {
           items: response.data.items,
           subtotal: response.data.subtotal || 0,
-          total: parseFloat(response.data.total) || 0,
+          total: parseFloat(response.data.grand_total) || 0,
           itemCount: response?.data?.items?.length || 0,
         },
       });
@@ -133,9 +133,7 @@ const Cart = () => {
                         <td className="fw-medium">
                           ${parseFloat(item?.price) * item?.quantity}
                         </td>
-                        <td className="fw-medium">
-                          {item.tax_percent}%
-                        </td>
+                        <td className="fw-medium">{item.tax_percent}%</td>
                         <td className="text-end pe-4">
                           <button
                             className="btn btn-link text-danger p-0"
@@ -171,7 +169,6 @@ const Cart = () => {
                 <span>${state?.subtotal}</span>
               </div>
 
-              
               <div className="d-flex justify-content-between mb-2">
                 <span className="text-muted">Tax</span>
                 <span>${state?.total - state?.subtotal}</span>
