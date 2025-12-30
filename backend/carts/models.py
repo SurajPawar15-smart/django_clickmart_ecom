@@ -16,16 +16,16 @@ class Cart(models.Model):
     
     @property
     def subtotal(self):
-        subtotal = 0
+        subtotal = Deciaml("0.00")
         for item in self.items.all():
             subtotal += item.product.price * item.quantity
         return subtotal
     
     @property
     def tax_amount(self):
-        tax = 0
+        tax = Deciaml("0.00")
         for item in self.items.all():
-            tax = tax + item.product.price * item.quantity * item.product.tax_percent / 100
+            tax += (item.product.price * item.quantity * Deciaml(item.product.tax_percent) / Decimal("100"))
         return tax
     
     @property
