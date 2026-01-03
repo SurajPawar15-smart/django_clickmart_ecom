@@ -738,7 +738,7 @@ Make a small frontend change and confirm auto-deploy.
 
 ================PRACTICAL====================
 
-.GitHub (create a new folder in root)
+.github (create a new folder in root)
 inside that => workflows => automate.yml
 
 settings => action secrets /new secret 
