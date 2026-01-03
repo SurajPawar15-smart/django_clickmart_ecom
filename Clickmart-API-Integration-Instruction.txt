@@ -205,33 +205,141 @@ EXPOSE 8000
 # A worker is just one instance of your Django app running inside Gunicorn.
 CMD ["gunicorn", "clickmart_main.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3" , "--timeout", "180"]
 
+===================================================
+Create Dockerfile for frontend
+===================================================
+Create a new file "Dockerfile" inside /frontend/ folder
+# Stage 1: Build
+FROM node:18 AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Build arguments for environment variables
+ARG VITE_SERVER_BASE_URL
+
+# This line passes an environment variable into the Docker container so the React app knows the backend API URL.
+ENV VITE_SERVER_BASE_URL=$VITE_SERVER_BASE_URL
+
+RUN npm run build
+
+# Stage 2: Nginx, alpine means the lighter version of Nginx
+FROM nginx:alpine
+
+# Copy build output to Nginx html directory
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+=> On the root directory, create a file "docker-compose.yml"
+services:
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - ./backend-drf/.env.production
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend-drf
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend-drf/.env.docker
+    depends_on:
+      - db
+    volumes:
+      - ./backend-drf/static:/app/static
+      - ./backend-drf/media:/app/media
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_SERVER_BASE_URL: "http://backend:8000/api/v1"
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
 
 
+# This creates a named Docker volume to permanently store PostgreSQL data.
+# Without this:
+  # Database data is stored inside the container
+  # If container is deleted → data is lost
+# With this:
+  # Data is stored in a Docker-managed volume
+  # Data persists even if container stops or restarts
+volumes:
+  postgres_data:
+
+=> create a file inside the backend:
+.env.docker
+SECRET_KEY='django-insecure-&359-iayq8wi@ki5ld_dx4m99k6*f2nbu57%6pqtvx2_3p4q_0'
+DEBUG=True
+
+# Database Settings
+DB_NAME=clickmart_db
+DB_USER=postgres
+DB_PASSWORD=root
+DB_HOST=localhost
+DB_PORT=5432
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+EMAIL_HOST_USER=pawarsuraj614@gmail.com
+EMAIL_HOST_PASSWORD='ettp leos vnlw uxly'
+
+DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
+
+.env.production
+# Database Settings
+DB_NAME=clickmart_deploy_db
+DB_USER=postgres
+DB_PASSWORD=root
 
 
+env file F:\PWR\django_clickmart_ecom\.env.production not found: CreateFile F:\PWR\django_clickmart_ecom\.env.production: The system cannot find the file specified.
 
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR /'static'
+STATICFILES_DIRS = [
+    'clickmart_main/static'
+]
 
+django_clickmart >docker compose up --build
 
+env_file:
+./backend/.env.production
 
+env file F:\PWR\django_clickmart_ecom\.env.production not found: CreateFile F:\PWR\django_clickmart_ecom\.env.production: The system cannot find the file specified.
 
+>docker compose ps
 
+>docker compose down -v
+>docker compose up --build
 
+>docker compose ps
+>docker compose exec backend python manage.py createsuperuser
 
+pp91511@gmail.com
 
+1:29:41 =>docker part done
 
+================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
+================================================
 
 
 

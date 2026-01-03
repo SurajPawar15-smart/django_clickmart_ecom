@@ -149,7 +149,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT=BASE_DIR/'static'
+staticfiles=[
+    'clickmart_main/static'
+]
 
 AUTH_USER_MODEL = "users.User"
 
@@ -186,3 +189,5 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Click Mart noreply@cl
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173'
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
