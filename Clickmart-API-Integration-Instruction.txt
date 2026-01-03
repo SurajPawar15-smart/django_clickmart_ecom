@@ -363,6 +363,9 @@ Root password: **********
 SSH Keys: => add an ssh key
 user SSH Keys:
 
+
+
+
 => Create SSH Key
 On your local machine:
 >ls ~/.ssh
@@ -378,6 +381,9 @@ ADD SSH KEY:
 label: clickmart_linode_ssh_key_new
 SSH public key: <pasteit>
 => button add => add key
+
+192.46.213.136
+
 
 => Copy the public key and add it to Linode UI:
 cat ~/.ssh/linode.pub
@@ -448,6 +454,12 @@ root@loclhost:/opt/clickmart# git clone https://github.com/SurajPawar15-smart/dj
 
 root@loclhost:/opt/clickmart# ls
 
+
+VITE_SERVER_BASE_URL: "http://127.0.0.1:8000/api/v1"
+
+VITE_SERVER_BASE_URL="http://<LINODE_IP>:8000/api/v1"
+VITE_SERVER_BASE_URL: "http://192.46.213.136/api/v1"
+
 ===============Practical End===========================
 
 => Update Frontend Environment Variable (command)
@@ -460,6 +472,12 @@ git push origin main
 Create Environment Files on Linode
 nano backend-drf/.env.production
 nano backend-drf/.env.docker
+
+
+git add .
+git status 
+git commit -m "environment variable added"
+git push origin main
 
 ===============Practical===========================
 .gitignore (add the below things)

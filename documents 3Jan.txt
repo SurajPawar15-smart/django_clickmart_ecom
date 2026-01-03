@@ -1,0 +1,104 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\HP> ls ~/.ssh
+ls : Cannot find path 'C:\Users\HP\.ssh' because it does not
+exist.
+At line:1 char:1
++ ls ~/.ssh
++ ~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\HP\.ssh:S
+   tring) [Get-ChildItem], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.C
+   ommands.GetChildItemCommand
+
+PS C:\Users\HP> ssh-keygen -t ed25519 -C "clickmart-linode"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (C:\Users\HP/.ssh/id_ed25519):
+Created directory 'C:\\Users\\HP/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\HP/.ssh/id_ed25519
+Your public key has been saved in C:\Users\HP/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:8bQTE2UmpZCUvHCCzF2pdeT5OUCg17kBHs+9lJz73SE clickmart-linode
+The key's randomart image is:
++--[ED25519 256]--+
+|   o o +B*=o=    |
+|    + +oBX.@ o   |
+|      .*+o# *    |
+|      ...+ X +   |
+|        S = *E . |
+|           . o..o|
+|              . o|
+|                 |
+|                 |
++----[SHA256]-----+
+PS C:\Users\HP> ls ~/.ssh
+
+
+    Directory: C:\Users\HP\.ssh
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        03-01-2026     20:00            411 id_ed25519
+-a----        03-01-2026     20:00             99 id_ed25519.pub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
