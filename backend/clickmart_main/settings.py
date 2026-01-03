@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -186,8 +186,15 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Click Mart noreply@clickmartapp.com')
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173'
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173'
+# ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://92.46.213.136:5173'
+]
