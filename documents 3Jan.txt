@@ -83,7 +83,10 @@ EMAIL_HOST_PASSWORD='ettp leos vnlw uxly'
 
 DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
 ================================================
-
+.env.docker
+Allowed host & environments added
+1 hour ago
+.env.production
 
 
 nano backend/.env.production
@@ -124,14 +127,72 @@ backend>nano .env.docker
 
 
 
+PS F:\PWR\django_clickmart_ecom> ssh root@192.46.213.136
 
 
 
 
+git clone https://github.com/SurajPawar15-smart/django_clickmart_ecom.git .
 
 
+========================================================
 
 
+services:
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - ./backend/.env.production
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env.docker
+    depends_on:
+      - db
+    volumes:
+      - ./backend/static:/app/static
+      - ./backend/media:/app/media
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_SERVER_BASE_URL: "http://192.46.213.136:8000/api/v1"
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - backend
+
+# This creates a named Docker volume to permanently store PostgreSQL data.
+# Without this:
+# Database data is stored inside the container
+# If container is deleted → data is lost
+# With this:
+# Data is stored in a Docker-managed volume
+# Data persists even if container stops or restarts
+volumes:
+  postgres_data:
 
 
 
