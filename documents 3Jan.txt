@@ -96,8 +96,12 @@ nano backend/.env.docker
 touch .env.docker
 live
 
-
-==================
+admin@techwithrathan.com
+================================================
+ssh root@192.46.213.136
+docker compose down
+docker compose up --build
+================================================
 
 cd /opt
 cd clickmart/
@@ -196,7 +200,7 @@ volumes:
 
 
 
-
+http://192.46.213.136/
 
 
 
