@@ -105,6 +105,10 @@ http://192.46.213.136/
 
 
 
+server_name djangoclickmartsp.online. wwwdjangoclickmartsp.online.;
+
+
+
 services:
   db:
     image: postgres:16-alpine
