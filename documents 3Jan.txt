@@ -101,6 +101,28 @@ admin@techwithrathan.com
 ssh root@192.46.213.136
 docker compose down
 docker compose up --build
+http://192.46.213.136/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ================================================
 
 cd /opt
