@@ -199,5 +199,5 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://192.46.213.136:5173',
     'http://djangoclickmartsp.online',
-    'https://djangoclickmartsp.online'
+    'https://djangoclickmartsp.online',
 ]

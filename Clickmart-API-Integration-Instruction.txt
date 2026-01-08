@@ -982,10 +982,41 @@ https://example.com
 Congratulations 🎉 You did it.
 
 =========================================================================
-Career Guidance & Interview Prep • Sunday Jan 04, 2026
+date:06/01/2026
 =========================================================================
 
+root@localhost:/opt/clickmartsp# git pull --rebase origin main
+error: Pulling is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+root@localhost:/opt/clickmartsp# git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 10 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
 
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+        modified:   .gitignore
+        modified:   backend/clickmart_main/settings.py
+        modified:   backend/requirements.txt
+        modified:   docker-compose.yml
+        modified:   documents 3Jan.txt
+        deleted:    frontend/.env
+        modified:   frontend/index.html
+        new file:   photos-01/102 domain.png
+        new file:   photos-01/103.png
+        new file:   photos-01/104.png
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+        deleted by them: backend/.env.docker
+        deleted by them: backend/.env.production
+        deleted by them: nginx/default.conf
 
 
 

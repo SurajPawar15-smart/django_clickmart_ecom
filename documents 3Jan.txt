@@ -103,7 +103,7 @@ docker compose down
 docker compose up -d --build
 http://192.46.213.136/
 
-
+Sur@j1234^&*()
 
 server_name djangoclickmartsp.online. wwwdjangoclickmartsp.online.;
 
@@ -716,6 +716,65 @@ CORS_ALLOWED_ORIGINS = [
 ]
 root@localhost:/opt/clickmartsp/backend# client_loop: send disconnect: Connection reset
 PS F:\PWR\django_clickmart_ecom>
+
+
+=================================================
+mkdir nginx
+cd nginx
+nano default.conf
+server_name : djangoclickmartsp.online www.djangoclickmartsp.online;
+
+
+cat default.conf
+
+cd ..
+backend # nano .env.docker
+docker compose restart backend
+docker compose ps
+
+"http://djangoclickmartsp.online",
+"https://djangoclickmartsp.online"
+
+git add .
+git commit -m "domain name allowed in cors"
+git push origin main
+
+git add .
+git commit -m "minor issue fixed"
+git push origin main
+docker compose ps
+
+ssh root@192.46.213.136
+docker compose down
+docker compose up -d --build
+http://192.46.213.136/
+
+=============================================
+https://djangoclickmartsp.online
+https://djangoclickmartsp.online/admin
+
+
+server:
+clickmart> nano nginx default.conf
+
+
+
+volumes:
+./backend/static:/static
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
