@@ -745,7 +745,7 @@ git push origin main
 docker compose ps
 
 ssh root@192.46.213.136
-docker compose down
+docker compose down -v
 docker compose up -d --build
 http://192.46.213.136/
 
@@ -763,7 +763,9 @@ volumes:
 ./backend/static:/static
 
 
-
+  location /static/ {
+        proxy_pass http://backend:8000;
+    }
 
 
 
