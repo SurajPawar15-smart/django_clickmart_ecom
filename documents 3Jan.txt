@@ -749,6 +749,7 @@ docker compose down -v
 docker compose up -d --build
 http://192.46.213.136/
 
+http://192.46.213.136/admin/
 =============================================
 https://djangoclickmartsp.online
 https://djangoclickmartsp.online/admin
@@ -768,7 +769,11 @@ volumes:
     }
 
 
-
+certbot certonly \
+  --webroot \
+  -w /opt/clickmartsp/certbot/www \
+  -d djangoclickmartsp.online \
+  -d www.djangoclickmartsp.online
 
 
 
