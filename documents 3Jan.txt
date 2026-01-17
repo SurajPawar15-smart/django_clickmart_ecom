@@ -755,6 +755,39 @@ http://192.46.213.136/admin/
 
 VITE_SERVER_BASE_URL: "/api/v1"
 
+docker  exec -it <backend_container> curl http://localhost:8000
+docker  exec -it a066a799a341 
+
+
+
+
+backend:
+    build: ./backend-drf
+    ports:
+      - "0.0.0.0:8000:8000"  # Explicitly bind to 0.0.0.0 on host
+    env_file:
+      - ./backend-drf/.env.docker
+    depends_on:
+      - db
+    volumes:
+      - ./backend-drf/static:/app/static
+      - ./backend-drf/media:/app/media
+    networks:
+      - app-network
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             gunicorn clickmart_main.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 180"
+
+
+
+
+
+
+
+
+
+
 =============================================
 services:
   db:

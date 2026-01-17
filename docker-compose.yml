@@ -6,16 +6,33 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  # backend:
+  #   build: ./backend
+  #   env_file:
+  #     - ./backend/.env.docker
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./backend/static:/app/static
+  #     - ./backend/media:/app/media
+  #   command: python manage.py collectstatic --noinput && python manage.py migrate && gunicorn clickmart_main.wsgi:application --bind 0.0.0.0:8000 --workers 3
   backend:
-    build: ./backend
+    build: ./backend-drf
+    ports:
+      - "0.0.0.0:8000:8000" # Explicitly bind to 0.0.0.0 on host
     env_file:
-      - ./backend/.env.docker
+      - ./backend-drf/.env.docker
     depends_on:
       - db
     volumes:
-      - ./backend/static:/app/static
-      - ./backend/media:/app/media
-    command: python manage.py collectstatic --noinput && python manage.py migrate && gunicorn clickmart_main.wsgi:application --bind 0.0.0.0:8000 --workers 3
+      - ./backend-drf/static:/app/static
+      - ./backend-drf/media:/app/media
+    networks:
+      - app-network
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             gunicorn clickmart_main.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 180"
 
   frontend:
     build:
